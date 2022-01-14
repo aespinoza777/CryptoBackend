@@ -1,0 +1,3 @@
+my_coin_job: 
+  cron: "*/5 * * * *"
+  class: "CoinWorker"
