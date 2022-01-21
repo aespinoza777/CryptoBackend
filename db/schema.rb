@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_005544) do
+ActiveRecord::Schema.define(version: 2022_01_20_232312) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "exchange_id"
+    t.integer "coin_id"
+    t.float "coin_quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coin_id"], name: "index_accounts_on_coin_id"
+    t.index ["exchange_id"], name: "index_accounts_on_exchange_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
@@ -23,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_005544) do
     t.datetime "last_updated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
   end
 
   create_table "exchanges", force: :cascade do |t|
