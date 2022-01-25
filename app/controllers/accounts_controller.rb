@@ -6,8 +6,15 @@ class AccountsController < ApplicationController
     end
 
     def create
-        account = Account.create(account_params)
+        account = current_user.accounts.create(account_params)
         render json: account, status: :created
+    end
+
+    def update
+        account = current_user.accounts.find(params[:id])
+        account.update(account_params)
+        render json: account
+        
     end
 
     private
